@@ -1,46 +1,138 @@
-# Getting Started with Create React App
+# Traditional Martial Arts Academy – Curriculum Archive
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository preserves and presents the **Pyon Moo Do curriculum videos** from the former **Traditional Martial Arts Academy (TMAA)** website.
 
-## Available Scripts
+The original WordPress site is no longer actively maintained. This project converts the curriculum into a **static, structured, React-based archive** that is easier to maintain, browse, and preserve long-term.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Purpose
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Preserve instructional and historical curriculum material
+- Convert unstructured WordPress pages into **typed, data-driven content**
+- Separate **content** from **presentation**
+- Provide a clean, readable interface for former students, staff, and families
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This is **not** a commercial project and contains no tracking, ads, or monetization.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech Stack
 
-### `npm run build`
+- **React + TypeScript**
+- Plain CSS (no runtime dependency on Tailwind)
+- Static data files (`.ts`) for curriculum content
+- Minimal component abstraction for long-term maintainability
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Project Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```text
+src/
+├── siteData/
+│   ├── adultCurriculum.ts      # Adult curriculum + archive data
+│   ├── kidsCurriculum.ts       # Kids curriculum data (parsed from WP HTML)
+│
+├── pages/
+│   ├── AdultCurriculum.tsx     # Adult curriculum page
+│   ├── KidsCurriculum.tsx      # Kids curriculum page
+│
+├── styles/
+│   ├── AdultCurriculum.css     # Shared curriculum styling
+│
+└── components/
+    └── LinkList.tsx            # Reusable list renderer (inline in pages currently)
+````
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Data Model
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+All curriculum items use the same basic structure:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```ts
+export type LinkItem = {
+  label: string;
+  url?: string;
+  note?: string;
+};
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This allows:
 
-## Learn More
+* Items with links
+* Items without links (documented as missing)
+* Inline notes explaining omissions or context
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Curriculum Pages
+
+### Adult Curriculum
+
+* Intro / setup videos
+* White belt curriculum (forms, striking, tactile skills, self-defense)
+* Color belt forms (yellow → brown)
+* Shared self-defense & tactile drill sections
+* Pum Dan curriculum
+* Archive of extra-curricular material:
+
+  * Hwarangdo classical forms
+  * Tukong Moosul
+  * Mo Mien Kuen / Tensaijitsu
+  * Weapons (sword, nunchaku, staff, miscellaneous)
+  * Neigong / Ipsun forms
+
+### Kids Curriculum
+
+* Videos for parents
+* Belt tests
+* Beginner program (white belt)
+* Intermediate belt curriculum
+* Blue belt curriculum
+* Advanced belt curriculum
+* Half black belt curriculum
+
+The Kids curriculum data was **manually extracted and normalized** from legacy WordPress HTML to remove layout artifacts and preserve meaning.
+
+---
+
+## Styling Philosophy
+
+* Typography and spacing loosely match the original WordPress *Inspiro* theme
+* Content-first design
+* No heavy UI frameworks
+* CSS scoped to curriculum pages for safety
+
+---
+
+## Running Locally
+
+```bash
+npm install
+npm run dev
+```
+
+Then open:
+
+```text
+http://localhost:3000
+```
+
+(or whatever port your setup uses)
+
+---
+
+## Disclaimer
+
+This archive is provided **for educational and historical purposes only**.
+
+All martial arts instruction should be practiced responsibly and, when possible, under qualified supervision.
+
+---
+
+## License
+
+This project is intended as a **private archival and educational resource**.
+No license is currently specified.
