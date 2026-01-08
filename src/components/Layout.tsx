@@ -1,5 +1,4 @@
 import { NavLink, Outlet } from "react-router-dom";
-import "./Layout.css";
 import logo from "../images/Memorial-banner-e1668284374920.png";
 
 export function Layout() {
