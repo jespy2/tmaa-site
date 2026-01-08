@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import '../App.css';
+import '../components/Layout.css'
 
 export function Home() {
 	return (
